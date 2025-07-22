@@ -81,12 +81,6 @@
             color: var(--secondary);
         }
         
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-        
         /* Hero Section */
         .hero {
             background-color: var(--primary);
@@ -172,9 +166,43 @@
             color: var(--primary);
         }
         
+        /* Faculty Section */
+        .faculty {
+            background-color: var(--light);
+        }
+        
+        .faculty-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+        
+        .faculty-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+            text-align: center;
+        }
+        
+        .faculty-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .faculty-card p {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
         /* Branches Section */
         .branches {
-            background-color: var(--light);
+            background-color: white;
         }
         
         .branches-container {
@@ -185,18 +213,13 @@
         }
         
         .branch-card {
-            background-color: white;
+            background-color: var(--light);
             border-radius: 10px;
             padding: 2rem;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             flex: 1;
             min-width: 300px;
             max-width: 400px;
-            transition: transform 0.3s;
-        }
-        
-        .branch-card:hover {
-            transform: translateY(-5px);
         }
         
         .branch-content h3 {
@@ -465,6 +488,7 @@
                 <ul>
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
+                    <li><a href="#faculty">Faculty</a></li>
                     <li><a href="#branches">Branches</a></li>
                     <li><a href="#timetable">Timetable</a></li>
                     <li><a href="#contact">Contact</a></li>
@@ -491,8 +515,40 @@
             <div class="about-content">
                 <div class="about-text">
                     <h3>Why Choose Pravin More Institute?</h3>
-                    <p>Pravin More Institute is a premier coaching center exclusively for ICSE students in Nashik. With years of experience in ICSE education, we understand the unique requirements of this curriculum and tailor our teaching methods accordingly.</p>
+                    <p>Founded and personally supervised by <strong>Pravin Sir</strong>, our institute is a premier coaching center exclusively for ICSE students in Nashik. With years of experience in ICSE education, we understand the unique requirements of this curriculum and tailor our teaching methods accordingly.</p>
                     <p>Our institute focuses on building strong conceptual foundations while developing problem-solving skills. We maintain small batch sizes to ensure individual attention for every student.</p>
+                    <p>We accept both PC (Personal Coaching) and MB (Main Batch) students, providing flexible options to suit different learning needs and schedules.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Faculty Section -->
+    <section class="section faculty" id="faculty">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Expert Faculty</h2>
+            </div>
+            <div class="faculty-container">
+                <div class="faculty-card">
+                    <h3>Chemistry</h3>
+                    <p>Swapnil Sir</p>
+                    <p>M.Sc. in Chemistry with 8+ years of ICSE teaching experience</p>
+                </div>
+                <div class="faculty-card">
+                    <h3>Mathematics</h3>
+                    <p>Raghini Teacher</p>
+                    <p>B.Sc. in Mathematics with 6+ years of ICSE teaching experience</p>
+                </div>
+                <div class="faculty-card">
+                    <h3>Physics</h3>
+                    <p>Vikram Sir</p>
+                    <p>M.Sc. in Physics with 7+ years of ICSE teaching experience</p>
+                </div>
+                <div class="faculty-card">
+                    <h3>Biology</h3>
+                    <p>Zoya Teacher</p>
+                    <p>M.Sc. in Biology with 5+ years of ICSE teaching experience</p>
                 </div>
             </div>
         </div>
@@ -535,20 +591,24 @@
                     <tr>
                         <th>Day</th>
                         <th>Subjects</th>
+                        <th>Faculty</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>Thursday</td>
                         <td>Biology & Mathematics</td>
+                        <td>Zoya Teacher & Raghini Teacher</td>
                     </tr>
                     <tr>
                         <td>Friday</td>
                         <td>Physics & Mathematics</td>
+                        <td>Vikram Sir & Raghini Teacher</td>
                     </tr>
                     <tr>
                         <td>Saturday</td>
                         <td>Chemistry & Mathematics</td>
+                        <td>Swapnil Sir & Raghini Teacher</td>
                     </tr>
                 </tbody>
             </table>
@@ -638,6 +698,7 @@
                     <ul>
                         <li><a href="#home">Home</a></li>
                         <li><a href="#about">About Us</a></li>
+                        <li><a href="#faculty">Faculty</a></li>
                         <li><a href="#branches">Branches</a></li>
                         <li><a href="#timetable">Timetable</a></li>
                         <li><a href="#contact">Contact</a></li>

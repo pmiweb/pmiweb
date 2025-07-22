@@ -24,10 +24,11 @@
             line-height: 1.6;
             color: #333;
             background-color: #f9f9f9;
+            overflow-x: hidden;
         }
         
         .container {
-            width: 90%;
+            width: 95%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 15px;
@@ -37,80 +38,159 @@
         header {
             background-color: var(--primary);
             color: white;
-            padding: 1rem 0;
+            padding: 0;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
+            position: fixed;
             top: 0;
-            z-index: 100;
+            width: 100%;
+            z-index: 1000;
         }
         
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            position: relative;
         }
         
         .logo {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: white;
             text-decoration: none;
+            z-index: 1001;
+            padding: 1rem 0;
+            margin-left: 1rem;
         }
         
-        .logo span {
-            color: var(--secondary);
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 1rem;
+            margin-right: 0.5rem;
         }
         
-        nav ul {
+        /* Desktop Navigation */
+        #desktopNav {
+            display: block;
+        }
+        
+        #desktopNav ul {
             display: flex;
             list-style: none;
+            margin: 0;
+            padding: 0;
         }
         
-        nav ul li {
+        #desktopNav ul li {
             margin-left: 1.5rem;
         }
         
-        nav ul li a {
+        #desktopNav ul li a {
             color: white;
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s;
+            font-size: 1rem;
+            padding: 1.5rem 0;
+            position: relative;
         }
         
-        nav ul li a:hover {
+        #desktopNav ul li a:hover {
             color: var(--secondary);
         }
         
+        /* Mobile Navigation */
+        #mobileMenu {
+            display: none;
+            width: 100%;
+            background-color: var(--primary);
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        #mobileMenu.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        
+        #mobileMenu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        #mobileMenu ul li {
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        #mobileMenu ul li:last-child {
+            border-bottom: none;
+        }
+        
+        #mobileMenu ul li a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 1.2rem 1.5rem;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        #mobileMenu ul li a:hover {
+            background-color: rgba(255,255,255,0.1);
+            color: var(--secondary);
+            padding-left: 2rem;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         /* Hero Section */
         .hero {
             background-color: var(--primary);
             color: white;
-            padding: 5rem 0;
+            padding: 6rem 0 3rem;
             text-align: center;
         }
         
         .hero h1 {
-            font-size: 3rem;
+            font-size: 2rem;
             margin-bottom: 1rem;
+            line-height: 1.3;
         }
         
         .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
+            font-size: 1rem;
+            max-width: 100%;
             margin: 0 auto 2rem;
+            padding: 0 1rem;
         }
         
         .btn {
             display: inline-block;
             background-color: var(--secondary);
             color: white;
-            padding: 0.8rem 1.8rem;
+            padding: 0.7rem 1.5rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s;
             border: none;
             cursor: pointer;
+            font-size: 0.9rem;
         }
         
         .btn:hover {
@@ -121,20 +201,21 @@
         
         /* About Section */
         .section {
-            padding: 5rem 0;
+            padding: 3rem 0;
+            scroll-margin-top: 60px;
         }
         
         .section-title {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
         }
         
         .section-title h2 {
-            font-size: 2.5rem;
+            font-size: 1.8rem;
             color: var(--dark);
             position: relative;
             display: inline-block;
-            padding-bottom: 1rem;
+            padding-bottom: 0.8rem;
         }
         
         .section-title h2::after {
@@ -143,27 +224,30 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
+            width: 60px;
             height: 3px;
             background-color: var(--secondary);
         }
         
         .about-content {
             display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 2rem;
+            flex-direction: column;
+            gap: 1.5rem;
         }
         
         .about-text {
-            flex: 1;
-            min-width: 300px;
+            width: 100%;
         }
         
         .about-text h3 {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             margin-bottom: 1rem;
             color: var(--primary);
+        }
+        
+        .about-text p {
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
         }
         
         /* Faculty Section */
@@ -172,32 +256,30 @@
         }
         
         .faculty-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
         }
         
         .faculty-card {
             background-color: white;
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            flex: 1;
-            min-width: 250px;
-            max-width: 300px;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
             text-align: center;
         }
         
         .faculty-card h3 {
             color: var(--primary);
             margin-bottom: 0.5rem;
+            font-size: 1.2rem;
         }
         
         .faculty-card p {
             color: var(--secondary);
             font-weight: 600;
             margin-bottom: 0.5rem;
+            font-size: 0.9rem;
         }
         
         /* Branches Section */
@@ -207,29 +289,30 @@
         
         .branches-container {
             display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            justify-content: center;
+            flex-direction: column;
+            gap: 1.5rem;
         }
         
         .branch-card {
             background-color: var(--light);
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            flex: 1;
-            min-width: 300px;
-            max-width: 400px;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
         }
         
         .branch-content h3 {
             color: var(--primary);
             margin-bottom: 1rem;
+            font-size: 1.3rem;
         }
         
         .branch-content p {
             margin-bottom: 1rem;
             color: #666;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
         }
         
         /* Timetable Section */
@@ -237,17 +320,24 @@
             text-align: center;
         }
         
+        .table-container {
+            overflow-x: auto;
+            margin: 0 auto;
+            max-width: 100%;
+        }
+        
         table {
             width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
             border-collapse: collapse;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            font-size: 0.85rem;
+            margin: 0 auto;
         }
         
         th, td {
-            padding: 1rem;
+            padding: 0.8rem;
             border: 1px solid #ddd;
+            word-break: break-word;
         }
         
         th {
@@ -271,17 +361,16 @@
         
         .contact-container {
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column;
             gap: 2rem;
         }
         
         .contact-info {
-            flex: 1;
-            min-width: 300px;
+            width: 100%;
         }
         
         .contact-info h3 {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             color: var(--primary);
             margin-bottom: 1.5rem;
         }
@@ -293,29 +382,32 @@
         }
         
         .contact-icon {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             color: var(--secondary);
             margin-right: 1rem;
-            margin-top: 0.3rem;
+            margin-top: 0.2rem;
         }
         
         .contact-text h4 {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--dark);
             margin-bottom: 0.3rem;
         }
         
+        .contact-text p {
+            font-size: 0.9rem;
+        }
+        
         .contact-form {
-            flex: 1;
-            min-width: 300px;
+            width: 100%;
             background-color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
         }
         
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
         }
         
         .form-group label {
@@ -323,18 +415,19 @@
             margin-bottom: 0.5rem;
             font-weight: 500;
             color: var(--dark);
+            font-size: 0.9rem;
         }
         
         .form-control {
             width: 100%;
-            padding: 0.8rem;
+            padding: 0.7rem;
             border: 1px solid #ddd;
             border-radius: 5px;
-            font-size: 1rem;
+            font-size: 0.9rem;
         }
         
         textarea.form-control {
-            min-height: 150px;
+            min-height: 120px;
             resize: vertical;
         }
         
@@ -342,24 +435,23 @@
         footer {
             background-color: var(--dark);
             color: white;
-            padding: 3rem 0 1rem;
+            padding: 2rem 0 1rem;
         }
         
         .footer-container {
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column;
             gap: 2rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
         
         .footer-col {
-            flex: 1;
-            min-width: 200px;
+            width: 100%;
         }
         
         .footer-col h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
             position: relative;
             padding-bottom: 0.5rem;
         }
@@ -369,7 +461,7 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 50px;
+            width: 40px;
             height: 2px;
             background-color: var(--secondary);
         }
@@ -379,13 +471,14 @@
         }
         
         .footer-col ul li {
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.7rem;
         }
         
         .footer-col ul li a {
             color: #bbb;
             text-decoration: none;
             transition: color 0.3s;
+            font-size: 0.9rem;
         }
         
         .footer-col ul li a:hover {
@@ -394,19 +487,19 @@
         
         .social-links {
             display: flex;
-            gap: 1rem;
+            gap: 0.8rem;
         }
         
         .social-links a {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
             background-color: rgba(255,255,255,0.1);
             border-radius: 50%;
             color: white;
-            font-size: 1.2rem;
+            font-size: 1rem;
             transition: all 0.3s;
         }
         
@@ -417,63 +510,63 @@
         
         .copyright {
             text-align: center;
-            padding-top: 2rem;
+            padding-top: 1.5rem;
             border-top: 1px solid rgba(255,255,255,0.1);
             color: #bbb;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
         }
         
         /* Responsive Styles */
         @media (max-width: 768px) {
-            .header-container {
-                flex-direction: column;
-                text-align: center;
+            .mobile-menu-btn {
+                display: block;
             }
             
-            nav ul {
-                margin-top: 1rem;
-                flex-direction: column;
-                align-items: center;
+            #desktopNav {
+                display: none;
             }
             
-            nav ul li {
-                margin: 0.5rem 0;
+            /* Adjust header padding for mobile */
+            header {
+                padding: 0;
             }
             
-            .hero h1 {
-                font-size: 2.2rem;
+            /* Make sure mobile menu doesn't push content down */
+            body {
+                padding-top: 60px;
             }
             
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .section-title h2 {
-                font-size: 2rem;
-            }
-            
-            th, td {
-                padding: 0.5rem;
-                font-size: 0.9rem;
+            .hero {
+                padding-top: 4rem;
+                padding-bottom: 2rem;
             }
         }
         
-        @media (max-width: 480px) {
-            .hero {
-                padding: 3rem 0;
+        @media (min-width: 768px) {
+            .branches-container {
+                flex-direction: row;
             }
             
-            .hero h1 {
-                font-size: 1.8rem;
+            .contact-container {
+                flex-direction: row;
             }
             
-            .btn {
-                padding: 0.6rem 1.2rem;
-                font-size: 0.9rem;
+            .faculty-container {
+                grid-template-columns: repeat(2, 1fr);
             }
             
-            .section {
-                padding: 3rem 0;
+            .footer-container {
+                flex-direction: row;
+            }
+        }
+        
+        @media (min-width: 992px) {
+            .faculty-container {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            #desktopNav ul li {
+                margin-left: 2rem;
             }
         }
     </style>
@@ -483,8 +576,21 @@
     <!-- Header -->
     <header>
         <div class="container header-container">
-            <a href="#" class="logo">Pravin <span>More</span> Institute</a>
-            <nav>
+            <a href="#home" class="logo">Pravin <span>More</span> Institute</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav id="desktopNav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#faculty">Faculty</a></li>
+                    <li><a href="#branches">Branches</a></li>
+                    <li><a href="#timetable">Timetable</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <nav id="mobileMenu">
                 <ul>
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
@@ -517,7 +623,7 @@
                     <h3>Why Choose Pravin More Institute?</h3>
                     <p>Founded and personally supervised by <strong>Pravin Sir</strong>, our institute is a premier coaching center exclusively for ICSE students in Nashik. With years of experience in ICSE education, we understand the unique requirements of this curriculum and tailor our teaching methods accordingly.</p>
                     <p>Our institute focuses on building strong conceptual foundations while developing problem-solving skills. We maintain small batch sizes to ensure individual attention for every student.</p>
-                   
+                    <p>We accept both PC (Personal Coaching) and MB (Main Batch) students, providing flexible options to suit different learning needs and schedules.</p>
                 </div>
             </div>
         </div>
@@ -586,32 +692,34 @@
                 <h2>Class Timetable</h2>
             </div>
             <h3 style="text-align: center; margin-bottom: 1.5rem; color: var(--primary);">9th Standard Horizon Batch</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Day</th>
-                        <th>Subjects</th>
-                        <th>Faculty</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Thursday</td>
-                        <td>Biology & Mathematics</td>
-                        <td>Zoya Teacher & Raghini Teacher</td>
-                    </tr>
-                    <tr>
-                        <td>Friday</td>
-                        <td>Physics & Mathematics</td>
-                        <td>Vikram Sir & Raghini Teacher</td>
-                    </tr>
-                    <tr>
-                        <td>Saturday</td>
-                        <td>Chemistry & Mathematics</td>
-                        <td>Swapnil Sir & Raghini Teacher</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Day</th>
+                            <th>Subjects</th>
+                            <th>Faculty</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Thursday</td>
+                            <td>Biology & Mathematics</td>
+                            <td>Zoya Teacher & Raghini Teacher</td>
+                        </tr>
+                        <tr>
+                            <td>Friday</td>
+                            <td>Physics & Mathematics</td>
+                            <td>Vikram Sir & Raghini Teacher</td>
+                        </tr>
+                        <tr>
+                            <td>Saturday</td>
+                            <td>Chemistry & Mathematics</td>
+                            <td>Swapnil Sir & Raghini Teacher</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </section>
 
@@ -688,9 +796,9 @@
                     <h3>Pravin More Institute</h3>
                     <p>Premier ICSE coaching institute in Nashik with two conveniently located branches to serve students across the city.</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
                 <div class="footer-col">
@@ -714,12 +822,47 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>This Website Is Made By Bhavesh Pawar</p>
+                <p>&copy; 2023 Pravin More Institute. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
+        // Enhanced Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        // Toggle mobile menu
+        mobileMenuBtn.addEventListener('click', function() {
+            const isExpanded = mobileMenu.classList.toggle('active');
+            this.setAttribute('aria-expanded', isExpanded);
+            this.innerHTML = isExpanded ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            
+            // Prevent body scroll when menu is open
+            document.body.style.overflow = isExpanded ? 'hidden' : '';
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                document.body.style.overflow = '';
+            });
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!mobileMenu.contains(e.target) && e.target !== mobileMenuBtn) {
+                mobileMenu.classList.remove('active');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                document.body.style.overflow = '';
+            }
+        });
+        
         // Form submission handling
         document.getElementById('enquiryForm').addEventListener('submit', function(e) {
             e.preventDefault();

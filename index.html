@@ -315,9 +315,84 @@
             gap: 0.5rem;
         }
         
-        /* Timetable Section */
-        .timetable {
+        /* Timetable Buttons Section */
+        .timetable-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+        
+        .timetable-btn {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            min-width: 250px;
             text-align: center;
+        }
+        
+        .timetable-btn:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Modal/Popup Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            overflow: auto;
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 800px;
+            position: relative;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            animation: modalFadeIn 0.3s;
+        }
+        
+        @keyframes modalFadeIn {
+            from {opacity: 0; transform: translateY(-50px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+        
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #aaa;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .close-modal:hover {
+            color: var(--secondary);
+        }
+        
+        #modalTitle {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
         }
         
         .table-container {
@@ -352,39 +427,6 @@
         
         tr:hover {
             background-color: #e9e9e9;
-        }
-        
-        /* Timetable Tabs */
-        .timetable-tabs {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-        }
-        
-        .timetable-tab {
-            padding: 0.7rem 1.5rem;
-            background-color: #ddd;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
-            margin: 0.3rem;
-            border-radius: 5px;
-        }
-        
-        .timetable-tab.active {
-            background-color: var(--secondary);
-            color: white;
-        }
-        
-        .timetable-content {
-            display: none;
-        }
-        
-        .timetable-content.active {
-            display: block;
-            animation: fadeIn 0.5s ease-in-out;
         }
         
         /* Contact Section */
@@ -573,6 +615,21 @@
                 padding-top: 4rem;
                 padding-bottom: 2rem;
             }
+            
+            .timetable-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .timetable-btn {
+                width: 100%;
+            }
+            
+            .modal-content {
+                margin: 10% auto;
+                width: 95%;
+                padding: 20px;
+            }
         }
         
         @media (min-width: 768px) {
@@ -619,7 +676,7 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#faculty">Faculty</a></li>
                     <li><a href="#branches">Branches</a></li>
-                    <li><a href="#timetable">Timetable</a></li>
+                    <li><a href="#timetables">Timetables</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -629,7 +686,7 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#faculty">Faculty</a></li>
                     <li><a href="#branches">Branches</a></li>
-                    <li><a href="#timetable">Timetable</a></li>
+                    <li><a href="#timetables">Timetables</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -656,7 +713,6 @@
                     <h3>Why Choose Pravin More Institute?</h3>
                     <p>Founded and personally supervised by <strong>Pravin Sir</strong>, our institute is a premier coaching center exclusively for ICSE students in Nashik. With years of experience in ICSE education, we understand the unique requirements of this curriculum and tailor our teaching methods accordingly.</p>
                     <p>Our institute focuses on building strong conceptual foundations while developing problem-solving skills. We maintain small batch sizes to ensure individual attention for every student.</p>
-                    
                 </div>
             </div>
         </div>
@@ -671,23 +727,19 @@
             <div class="faculty-container">
                 <div class="faculty-card">
                     <h3>Chemistry</h3>
-                    <p>Swapnil Sir</p>
-                    
+  
                 </div>
                 <div class="faculty-card">
                     <h3>Mathematics</h3>
-                    <p>Ragini Teacher</p>
-                    
+                   
                 </div>
                 <div class="faculty-card">
                     <h3>Physics</h3>
-                    <p>Vikram Sir</p>
-                    
+          
                 </div>
                 <div class="faculty-card">
                     <h3>Biology</h3>
-                    <p>Zora Teacher</p>
-                    
+      
                 </div>
             </div>
         </div>
@@ -718,82 +770,17 @@
         </div>
     </section>
 
-    <!-- Timetable Section -->
-    <section class="section timetable" id="timetable">
+    <!-- Timetables Section -->
+    <section class="section" id="timetables">
         <div class="container">
             <div class="section-title">
-                <h2>Class Timetable</h2>
+                <h2>View Timetables</h2>
             </div>
-            
-            <div class="timetable-tabs">
-                <button class="timetable-tab active" data-tab="horizon">Horizon Academy</button>
-                <button class="timetable-tab" data-tab="ashoka">Ashoka School</button>
-            </div>
-            
-            <!-- Horizon Academy Timetable -->
-            <div class="timetable-content active" id="horizon-timetable">
-                <h3 style="text-align: center; margin-bottom: 1.5rem; color: var(--primary);">9th Standard Horizon Batch</h3>
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Day</th>
-                                <th>Subjects</th>
-                                <th>Faculty</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Thursday</td>
-                                <td>Biology & Mathematics</td>
-                                <td>Zoya Teacher & Raghini Teacher</td>
-                            </tr>
-                            <tr>
-                                <td>Friday</td>
-                                <td>Physics & Mathematics</td>
-                                <td>Vikram Sir & Raghini Teacher</td>
-                            </tr>
-                            <tr>
-                                <td>Saturday</td>
-                                <td>Chemistry & Mathematics</td>
-                                <td>Swapnil Sir & Raghini Teacher</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            
-            <!-- Ashoka School Timetable -->
-            <div class="timetable-content" id="ashoka-timetable">
-                <h3 style="text-align: center; margin-bottom: 1.5rem; color: var(--primary);">9th Standard Ashoka Batch</h3>
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Day</th>
-                                <th>Subjects</th>
-                                <th>Faculty</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Thursday</td>
-                                <td>Biology & Mathematics</td>
-                                <td>Zoya Teacher & Raghini Teacher</td>
-                            </tr>
-                            <tr>
-                                <td>Friday</td>
-                                <td>Physics & Mathematics</td>
-                                <td>Vikram Sir & Raghini Teacher</td>
-                            </tr>
-                            <tr>
-                                <td>Saturday</td>
-                                <td>Chemistry & Mathematics</td>
-                                <td>Swapnil Sir & Raghini Teacher</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+            <div class="timetable-buttons">
+                <button class="timetable-btn" data-school="horizon">Horizon Academy Timetable</button>
+                <button class="timetable-btn" data-school="ashoka">Ashoka School Timetable</button>
+                <button class="timetable-btn" data-school="fraveshi">10th Fraveshi Batch A (Girls)</button>
+                <button class="timetable-btn" data-school="fraveshi-b">10th Fraveshi Batch B (Boys)</button>
             </div>
         </div>
     </section>
@@ -838,27 +825,27 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <h3>Send Us a Message</h3>
-                    <form id="enquiryForm">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="class">Class</label>
-                            <input type="text" id="class" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" class="form-control"></textarea>
-                        </div>
-                        <button type="submit" class="btn">Submit</button>
-                    </form>
-                </div>
+    <h3>Send Us a Message</h3>
+    <form id="enquiryForm">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="class">Class</label>
+            <input type="text" id="class" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" class="form-control" required></textarea>
+        </div>
+        <button type="submit" class="btn">Submit</button>
+    </form>
+</div>
             </div>
         </div>
     </section>
@@ -883,7 +870,7 @@
                         <li><a href="#about">About Us</a></li>
                         <li><a href="#faculty">Faculty</a></li>
                         <li><a href="#branches">Branches</a></li>
-                        <li><a href="#timetable">Timetable</a></li>
+                        <li><a href="#timetables">Timetables</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
@@ -901,6 +888,19 @@
             </div>
         </div>
     </footer>
+
+    <!-- Timetable Modal -->
+    <div class="modal" id="timetableModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3 id="modalTitle">Timetable</h3>
+            <div class="table-container">
+                <table id="modalTimetable">
+                    <!-- Table content will be inserted by JavaScript -->
+                </table>
+            </div>
+        </div>
+    </div>
 
     <script>
         // Enhanced Mobile Menu Toggle
@@ -938,23 +938,37 @@
             }
         });
         
-        // Form submission handling
-        document.getElementById('enquiryForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const studentClass = document.getElementById('class').value;
-            const message = document.getElementById('message').value;
-            
-            // Here you would typically send this data to a server
-            // For this example, we'll just show an alert
-            alert(`Thank you, ${name}! Your enquiry has been received. We will contact you shortly at ${phone}.`);
-            
-            // Reset the form
-            this.reset();
-        });
+        // Form submission handling - Email functionality
+document.getElementById('enquiryForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Get form values
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const studentClass = document.getElementById('class').value;
+    const rawMessage = document.getElementById('message').value;
+    
+    // Create plain text version of the message (preserves line breaks)
+    const plainTextBody = `
+Enquiry Details
+---------------
+Name: ${name}
+Email: ${email}
+Class: ${studentClass}
+
+Message:
+${rawMessage}
+
+Sent via Pravin More Institute website contact form
+    `;
+    
+    // Open Gmail with plain text message
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=bhaveshapawar08@gmail.com&su=${encodeURIComponent(`Enquiry from ${name}`)}&body=${encodeURIComponent(plainTextBody)}`;
+    window.open(gmailUrl, '_blank');
+    
+    // Reset form
+    this.reset();
+});
         
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -967,20 +981,115 @@
             });
         });
         
-        // Timetable Tab Functionality
-        const timetableTabs = document.querySelectorAll('.timetable-tab');
+        // Timetable Modal Functionality
+        const modal = document.getElementById('timetableModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalTimetable = document.getElementById('modalTimetable');
+        const closeModal = document.querySelector('.close-modal');
         
-        timetableTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                // Remove active class from all tabs and contents
-                document.querySelectorAll('.timetable-tab').forEach(t => t.classList.remove('active'));
-                document.querySelectorAll('.timetable-content').forEach(c => c.classList.remove('active'));
+        // Timetable data
+        const timetables = {
+            horizon: {
+                title: "9th Standard Horizon Batch",
+                data: [
+                    ["Thursday", "Biology & Mathematics", "Zoya Teacher & Raghini Teacher"],
+                    ["Friday", "Physics & Mathematics", "Vikram Sir & Raghini Teacher"],
+                    ["Saturday", "Chemistry & Mathematics", "Swapnil Sir & Raghini Teacher"]
+                ]
+            },
+            ashoka: {
+                title: "9th Standard Ashoka Batch",
+                data: [
+                    ["Thursday", "Biology & Mathematics", "Zoya Teacher & Raghini Teacher"],
+                    ["Friday", "Physics & Mathematics", "Vikram Sir & Raghini Teacher"],
+                    ["Saturday", "Chemistry & Mathematics", "Swapnil Sir & Raghini Teacher"]
+                ]
+            },
+            fraveshi: {
+                title: "10th Standard Fraveshi Batch A (Girls)",
+                data: [
+                    ["Monday", "4:30 to 6:00 - Maths<br>6:00 to 7:30 - Biology", "Faculty Names"],
+                    ["Tuesday", "4:30 to 6:00 - Maths<br>6:00 to 7:30 - Chemistry", "Faculty Names"],
+                    ["Wednesday", "4:30 to 6:00 - Maths<br>6:00 to 7:30 - Physics", "Faculty Names"],
+                    ["Thursday", "5:00 to 6:30 - English I<br>6:30 to 7:30 - History", "Faculty Names"],
+                    ["Thursday", "5:00 to 6:30 - English II<br>6:30 to 7:30 - Geography", "Faculty Names"],
+                    ["Saturday", "5:30 to 7:00 - Hindi-Marathi", "Faculty Names"]
+                ]
+            },
+            "fraveshi-b": {
+                title: "10th Standard Fraveshi Batch B (Boys)",
+                data: [
+                    ["Monday", "4:30 to 6:00 - Biology<br>6:00 to 7:30 - Maths", "Faculty Names"],
+                    ["Tuesday", "4:30 to 6:00 - Chemistry<br>6:00 to 7:30 - Maths", "Faculty Names"],
+                    ["Wednesday", "4:30 to 6:00 - Physics<br>6:00 to 7:30 - Maths", "Faculty Names"],
+                    ["Thursday", "5:30 to 6:30 - English I<br>6:30 to 7:30 - History", "Faculty Names"],
+                    ["Friday", "5:30 to 6:30 - English II<br>6:30 to 7:30 - Geography", "Faculty Names"],
+                    ["Saturday", "5:30 to 7:00 - Hindi-Marathi", "Faculty Names"]
+                ]
+            }
+        };
+
+        // Open modal with timetable
+        document.querySelectorAll('.timetable-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const school = this.getAttribute('data-school');
+                const timetable = timetables[school];
                 
-                // Add active class to clicked tab and corresponding content
-                tab.classList.add('active');
-                const tabId = tab.getAttribute('data-tab');
-                document.getElementById(`${tabId}-timetable`).classList.add('active');
+                modalTitle.textContent = timetable.title;
+                
+                // Clear previous table content
+                modalTimetable.innerHTML = '';
+                
+                // Create table header
+                const thead = document.createElement('thead');
+                thead.innerHTML = `
+                    <tr>
+                        <th>Day</th>
+                        <th>Subjects</th>
+                        <th>Faculty</th>
+                    </tr>
+                `;
+                modalTimetable.appendChild(thead);
+                
+                // Create table body
+                const tbody = document.createElement('tbody');
+                timetable.data.forEach(row => {
+                    const tr = document.createElement('tr');
+                    row.forEach(cell => {
+                        const td = document.createElement('td');
+                        td.innerHTML = cell; // Use innerHTML to render HTML content
+                        tr.appendChild(td);
+                    });
+                    tbody.appendChild(tr);
+                });
+                modalTimetable.appendChild(tbody);
+                
+                // Show modal
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
             });
+        });
+
+        // Close modal
+        closeModal.addEventListener('click', function() {
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+        });
+
+        // Close when clicking outside modal
+        window.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Close with ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.style.display === 'block') {
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
         });
     </script>
 </body>

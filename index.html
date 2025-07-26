@@ -473,39 +473,6 @@
             font-size: 0.9rem;
         }
         
-        .contact-form {
-            width: 100%;
-            background-color: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-        
-        .form-group {
-            margin-bottom: 1.2rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: var(--dark);
-            font-size: 0.9rem;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 0.7rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 0.9rem;
-        }
-        
-        textarea.form-control {
-            min-height: 120px;
-            resize: vertical;
-        }
-        
         /* Footer */
         footer {
             background-color: var(--dark);
@@ -698,7 +665,6 @@
         <div class="container">
             <h1>Exclusive ICSE Coaching in Nashik</h1>
             <p>Pravin More Institute provides specialized coaching for ICSE students with personalized attention and proven teaching methodologies to help students excel academically.</p>
-            <a href="#contact" class="btn">Enquire Now</a>
         </div>
     </section>
 
@@ -727,19 +693,15 @@
             <div class="faculty-container">
                 <div class="faculty-card">
                     <h3>Chemistry</h3>
-  
                 </div>
                 <div class="faculty-card">
                     <h3>Mathematics</h3>
-                   
                 </div>
                 <div class="faculty-card">
                     <h3>Physics</h3>
-          
                 </div>
                 <div class="faculty-card">
                     <h3>Biology</h3>
-      
                 </div>
             </div>
         </div>
@@ -776,12 +738,14 @@
             <div class="section-title">
                 <h2>View Timetables</h2>
             </div>
-            <div class="timetable-buttons">
-                <button class="timetable-btn" data-school="horizon">Horizon Academy Timetable</button>
-                <button class="timetable-btn" data-school="ashoka">Ashoka School Timetable</button>
-                <button class="timetable-btn" data-school="fraveshi">10th Fraveshi Batch A (Girls)</button>
-                <button class="timetable-btn" data-school="fraveshi-b">10th Fraveshi Batch B (Boys)</button>
-            </div>
+           <div class="timetable-buttons">
+    <button class="timetable-btn" data-school="horizon">9th Horizon Academy </button>
+    <button class="timetable-btn" data-school="ashoka">9th Ashoka School </button>
+    <button class="timetable-btn" data-school="fraveshi">10th Fraveshi Batch A (Girls)</button>
+    <button class="timetable-btn" data-school="fraveshi-b">10th Fraveshi Batch B (Boys)</button>
+    <button class="timetable-btn" data-school="ryan-ashoka">10th Ryan & Ashoka Batch</button>
+    <button class="timetable-btn" data-school="silveroak-wisdom">10th Silver Oak & Wisdom High Batch</button>
+</div>
         </div>
     </section>
 
@@ -824,24 +788,6 @@
                         </div>
                     </div>
                 </div>
-<div class="contact-form">
-    <h3>Send Us a Message</h3>
-    <form id="enquiryForm">
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="class">Class</label>
-            <input type="text" id="class" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" class="form-control" required></textarea>
-        </div>
-        <button type="submit" class="btn">Submit</button>
-    </form>
-</div>
             </div>
         </div>
     </section>
@@ -934,43 +880,6 @@
             }
         });
         
-        // Form submission handling - Email functionality
-document.getElementById('enquiryForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Get form values (removed email field)
-    const name = document.getElementById('name').value;
-    const studentClass = document.getElementById('class').value;
-    const rawMessage = document.getElementById('message').value;
-    
-    // Create plain text message
-    const subject = `Enquiry from ${name}`;
-    const body = `Name: ${name}\nClass: ${studentClass}\n\nMessage:\n${rawMessage}`;
-    
-    // Check if mobile device
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    
-    if (isMobile) {
-        // For mobile - try to open Gmail app directly
-        const gmailAppUrl = `com.google.android.gm://co?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        const gmailWebUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=bhaveshapawar08@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        
-        // Try to open app, fallback to web if app not available
-        window.location.href = gmailAppUrl;
-        setTimeout(function() {
-            if (!document.hidden) {
-                window.open(gmailWebUrl, '_blank');
-            }
-        }, 500);
-    } else {
-        // For desktop - open Gmail web
-        window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=bhaveshapawar08@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`, '_blank');
-    }
-    
-    // Reset form
-    this.reset();
-});
-        
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1027,8 +936,30 @@ document.getElementById('enquiryForm').addEventListener('submit', function(e) {
                     ["Friday", "5:30 to 6:30 - English II<br>6:30 to 7:30 - Geography", "Faculty Names"],
                     ["Saturday", "5:30 to 7:00 - Hindi-Marathi", "Faculty Names"]
                 ]
-            }
-        };
+            },
+            "ryan-ashoka": {
+                title: "10th Standard Ryan & Ashoka Batch",
+                data: [
+                    ["Monday", "4:30 to 6:00 - Physics<br>6:00 to 7:30 - Maths", "Faculty Names"],
+                    ["Tuesday", "4:30 to 6:00 - Biology<br>6:00 to 7:30 - Maths", "Faculty Names"],
+                    ["Wednesday", "4:30 to 6:00 - Chemistry<br>6:00 to 7:30 - Maths", "Faculty Names"],
+                    ["Thursday", "4:00 to 5:00 - History<br>5:00 to 6:30 - English I", "Faculty Names"],
+                    ["Friday", "4:00 to 5:00 - Geography<br>5:00 to 6:30 - English II", "Faculty Names"],
+                    ["Saturday", "4:00 to 6:00 - Eco/C.S<br>5:30 to 7:00 - Hindi-Marathi", "Faculty Names"]
+                ]
+            },
+			"silveroak-wisdom": {
+            title: "10th Standard Silver Oak & Wisdom High Batch",
+            data: [
+                ["Monday", "4:30 to 6:00 - Maths<br>6:00 to 7:30 - Physics", "Faculty Names"],
+                ["Tuesday", "4:30 to 6:00 - Maths<br>6:00 to 7:30 - Biology", "Faculty Names"],
+                ["Wednesday", "4:30 to 6:00 - Maths<br>6:00 to 7:30 - Chemistry", "Faculty Names"],
+                ["Thursday", "4:00 to 5:00 - History<br>5:00 to 6:30 - English I", "Faculty Names"],
+                ["Friday", "4:00 to 5:00 - Geography<br>5:00 to 6:30 - English II", "Faculty Names"],
+                ["Saturday", "4:00 to 6:00 - Eco/C.S<br>5:30 to 7:00 - Hindi-Marathi", "Faculty Names"]
+            ]
+        }
+    };
 
         // Open modal with timetable
         document.querySelectorAll('.timetable-btn').forEach(btn => {

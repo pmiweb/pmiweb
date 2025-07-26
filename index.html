@@ -824,16 +824,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="contact-form">
+<div class="contact-form">
     <h3>Send Us a Message</h3>
     <form id="enquiryForm">
         <div class="form-group">
             <label for="name">Name</label>
             <input type="text" id="name" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" class="form-control" required>
         </div>
         <div class="form-group">
             <label for="class">Class</label>
@@ -942,29 +938,34 @@
 document.getElementById('enquiryForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
-    // Get form values
+    // Get form values (removed email field)
     const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
     const studentClass = document.getElementById('class').value;
     const rawMessage = document.getElementById('message').value;
     
-    // Create plain text version of the message (preserves line breaks)
-    const plainTextBody = `
-Enquiry Details
----------------
-Name: ${name}
-Email: ${email}
-Class: ${studentClass}
-
-Message:
-${rawMessage}
-
-Sent via Pravin More Institute website contact form
-    `;
+    // Create plain text message
+    const subject = `Enquiry from ${name}`;
+    const body = `Name: ${name}\nClass: ${studentClass}\n\nMessage:\n${rawMessage}`;
     
-    // Open Gmail with plain text message
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=bhaveshapawar08@gmail.com&su=${encodeURIComponent(`Enquiry from ${name}`)}&body=${encodeURIComponent(plainTextBody)}`;
-    window.open(gmailUrl, '_blank');
+    // Check if mobile device
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+        // For mobile - try to open Gmail app directly
+        const gmailAppUrl = `com.google.android.gm://co?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        const gmailWebUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=bhaveshapawar08@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        
+        // Try to open app, fallback to web if app not available
+        window.location.href = gmailAppUrl;
+        setTimeout(function() {
+            if (!document.hidden) {
+                window.open(gmailWebUrl, '_blank');
+            }
+        }, 500);
+    } else {
+        // For desktop - open Gmail web
+        window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=bhaveshapawar08@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`, '_blank');
+    }
     
     // Reset form
     this.reset();
